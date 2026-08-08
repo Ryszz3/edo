@@ -5,4 +5,5 @@ app_name = "word"
 
 urlpatterns = [
     path('word/upload/', views.upload_word, name='upload_word'),
+
 ]

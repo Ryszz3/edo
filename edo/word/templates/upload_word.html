@@ -1,10 +1,12 @@
 
 
 
-
 <h1>{{ title }}</h1>
 <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <p> <input type="file" name="file_upload"> </p>
-    <p> <button type="submit"> Отправить </button> </p>
+{% csrf_token %}
+    {% for f in form %}
+<p><label>{{ f.label }}: </label>{{ f }}</p>
+    {% endfor %}
+    <p><button type="submit" >Отправить</button></p>
 </form>
+

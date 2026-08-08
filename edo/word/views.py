@@ -1,4 +1,7 @@
 from django.shortcuts import render
+
+from edo.settings import BASE_DIR
+from word.forms import UploadWordForm
 from word.models import Uploads
 
 # def handle_uploaded_file(f):
@@ -9,10 +12,26 @@ from word.models import Uploads
 
 
 def upload_word(request):
+    form = UploadWordForm()
     if request.method == 'POST':
-        u = Uploads(file=request.FILES.get("file_upload"))
-        u.save()
+        form = UploadWordForm(request.POST, request.FILES)
+        if form.is_valid():
+            form_data = form.cleaned_data
+            if form_data["name"]:
+                print(f'CLEAN DATA: {form.cleaned_data}')
+                Uploads.objects.create(**form_data)
+            else:
+                print(f'DATA: {form_data["name"]}')
+                u = Uploads(**form_data)
+                u.save()
+                a = Uploads.objects.get(pk=u.pk)
+                a.name = str(a.file).split("/")[-1]
+                a.save()
+                print(f"A: {a}")
 
-    return render(request, 'upload_word.html', {'title': 'Загрузить word файл'})
+
+    return render(request, 'upload_word.html', {'form': form, 'title': 'Загрузить word файл'})
 
 
+def process_file():
+    return None
