@@ -6,4 +6,4 @@ from word.models import Uploads
 class UploadWordForm(forms.ModelForm):
     class Meta:
         model = Uploads
-        fields = '__all__'
+        fields = ["file", "status"]

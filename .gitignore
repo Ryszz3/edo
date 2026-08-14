@@ -20,6 +20,7 @@ __pycache__/
 
 # Database
 *.sqlite3
+uploads
 
 # Media files (user uploads)
 media/
@@ -33,3 +34,5 @@ Thumbs.db
 
 # Django migrations (keep initial)
 */migrations/0*.py
+
+
