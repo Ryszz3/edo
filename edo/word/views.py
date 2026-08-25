@@ -15,26 +15,27 @@ def upload_word(request):
     form = UploadWordForm()
     if request.method == 'POST':
         form = UploadWordForm(request.POST, request.FILES)
-
-
+        print(form)
+        print(form.is_valid())
             # if form_data["name"]:
             #     print(f'CLEAN DATA: {form.cleaned_data}')
             #     Uploads.objects.create(**form_data)
         if form.is_valid():
-
             form_data = form.cleaned_data
             print(form_data.get("name"))
             # print(f'DATA: {form_data["name"]}')
             u = Uploads(**form_data)
             u.save()
             a = Uploads.objects.get(pk=u.pk)
-            a.name = str(a.file).split(".")[-1]
+            a.name = str(a.file).split("/")[-1].split(".")[0]
             a.save()
             print(f"A: {a}")
+        print(form.errors)
     #         вывести все пдфки, кол во символов, страниц, слов
-
-
     return render(request, 'upload_word.html', {'form': form, 'title': 'Загрузить word файл'})
+
+
+
 
 
 def process_file():

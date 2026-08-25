@@ -6,6 +6,6 @@ app_name = "user"
 
 urlpatterns = [
     path('user/show_uploads/', views.show_uploads, name="show_uploads"),
-    path('download/', views.download, name='download'),
+    path('download_word/', views.download_word, name='download_word'),
     path('process-file-ajax/', views.process_file_ajax, name='process_file_ajax')
 ]

@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ai.apps.AiConfig',
-    'exel.apps.ExelConfig',
+    'excel.apps.excelConfig',
     'pdf.apps.PdfConfig',
     'user.apps.UserConfig',
     'word.apps.WordConfig',

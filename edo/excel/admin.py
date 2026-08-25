@@ -3,5 +3,5 @@
 #
 #
 # @register(admin.ModelAdmin)
-# class ExelAdmin(admin.ModelAdmin):
+# class excelAdmin(admin.ModelAdmin):
 #     pass
