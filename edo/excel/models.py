@@ -9,7 +9,8 @@ class ExcelUploads(models.Model):
 
 class ExcelSheets(models.Model):
     name = models.CharField(max_length=100)
-    source = models.ForeignKey(ExcelUploads, on_delete=models.CASCADE)
+    file = models.FileField(default=False)
+    source = models.ForeignKey(ExcelUploads, on_delete=models.CASCADE, related_name="sheets")
 
 class ConsolidatedExcel(models.Model):
     name = models.CharField(max_length=255, blank=False)

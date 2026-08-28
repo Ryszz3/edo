@@ -14,14 +14,12 @@ import pdfplumber
 
 def show_uploads(request):
     context = {}
-
-
     word_data = Uploads.objects.all()
     context["data"] = {}
     context["data"]["word"] = word_data
     context["data"]["pdf"] = show_pdf()
-
-
+    context["data"]["excel"] = show_excel()
+    print(context)
     if request.method == "POST":
         if "publish" in request.POST:
             name = request.POST.get("publish")
@@ -50,13 +48,10 @@ def show_pdf():
                 result[f"pdf_file_{counter}"] = {"pk": p.pk, "name": str(p.file).split("/")[-1], "chars": len(chars), "words": words, "lines": len(lines)}
     return result
 
+
 def show_excel():
     excel = ExcelUploads.objects.all()
-    for e in excel:
-        os.path.isfile(BASE_DIR / str(e.file))
-        pass
-
-
+    return excel
 
 
 def download_word(request):
@@ -89,3 +84,7 @@ def process_file_ajax(request):
 def decode(data):
     s_data = data.decode('utf-8')
     return json.loads(s_data)
+
+
+if __name__ == "__main__":
+    print(show_excel())

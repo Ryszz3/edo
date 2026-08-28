@@ -127,3 +127,26 @@
     <i class="bi bi-upload"></i>
     Загрузить новый файл
 </a>
+
+<div>
+    <form method="post" action="{% url 'excel:consolidate_excel' %}">
+        {% csrf_token %}
+        <input type="submit" value="объединить">
+    {% for excel_data in data.excel %}
+    <h4> Excel файл № {{excel_data.id}}</h4>
+    Время создания: {{excel_data.created_at}}
+    <br>
+    Путь: {{excel_data.file}}
+    <h5> Листы </h5>
+    {% for sheet in excel_data.sheets.all %}
+    id: {{ sheet.id }}
+    <br>
+    Имя: {{ sheet.name }}
+    <br>
+    Путь: {{sheet.file }}
+        <input type="checkbox" name="consolidate" value="{{ sheet.id }}">
+    {% endfor %}
+    <hr>
+    {% endfor %}
+        </form>
+</div>
